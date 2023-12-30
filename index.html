@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+  width: 80px;
+  height: 80px;
+  background-color: green;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 80px;
+  color: white;
+  cursor: pointer;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+}
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  font-size: 30px;
+}
+.overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#button-init {
+  margin-bottom: 20px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div id="button-init" class="button">初始化</div>
+</div>
+<div class="container">
+  <div class="button" onclick="handleClick(1)">1</div>
+  <div class="button" onclick="handleClick(2)">2</div>
+  <div class="button" onclick="handleClick(3)">3</div>
+  <div class="button" onclick="handleClick(4)">4</div>
+  <div class="button" onclick="handleClick(5)">5</div>
+</div>
+<div class="container">
+  <div class="button" onclick="handleClick(6)">6</div>
+  <div class="button" onclick="handleClick(7)">7</div>
+  <div class="button" onclick="handleClick(8)">8</div>
+  <div class="button" onclick="handleClick(9)">9</div>
+  <div class="button" onclick="handleClick(10)">10</div>
+</div>
+<div class="container">
+  <div class="button" onclick="handleClick(11)">11</div>
+  <div class="button" onclick="handleClick(12)">12</div>
+  <div class="button" onclick="handleClick(13)">13</div>
+  <div class="button" onclick="handleClick(14)">14</div>
+  <div class="button" onclick="handleClick(15)">15</div>
+</div>
+<div class="container">
+  <div class="button" onclick="handleClick(16)">16</div>
+  <div class="button" onclick="handleClick(17)">17</div>
+  <div class="button" onclick="handleClick(18)">18</div>
+  <div class="button" onclick="handleClick(19)">19</div>
+  <div class="button" onclick="handleClick(20)">20</div>
+</div>
+<div class="overlay" id="overlay">
+  <div class="overlay-content" id="overlay-content">
+    <div id="number"></div>
+    <button onclick="hideOverlay()">返回</button>
+  </div>
+</div>
+<script>
+var numbers = [];  // 存储数字按钮的状态，0 表示未点击，1 表示已点击
+var prizes = {};  // 存储数字与奖项的对应关系
+function handleClick(number) {
+  if (numbers[number - 1] === 0) {
+    numbers[number - 1] = 1;
+    document.getElementsByClassName("button")[number].style.background = "gray";
+    showOverlay(prizes[number]);
+  }
+}
+function showOverlay(prize) {
+  document.getElementById("number").innerHTML = "获得奖项：" + prize;
+  document.getElementById("overlay").style.display = "block";
+}
+function hideOverlay() {
+  document.getElementById("overlay").style.display = "none";
+}
+function initialize() {
+  numbers = Array(20).fill(0);
+  var buttons = document.getElementsByClassName("button");
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].style.background = "green";
+  }
+  // 根据您的要求重新设置数字与奖项的对应关系
+  prizes = {
+    1: "一等奖",
+    2: "二等奖",
+    3: "三等奖",
+    4: "一等奖",
+    5: "二等奖",
+    6: "三等奖",
+    7: "一等奖",
+    8: "二等奖",
+    9: "三等奖",
+    10: "一等奖",
+    11: "二等奖",
+    12: "三等奖",
+    13: "一等奖",
+    14: "二等奖",
+    15: "三等奖",
+    16: "一等奖",
+    17: "二等奖",
+    18: "三等奖",
+    19: "一等奖",
+    20: "三等奖"
+  };
+}
+document.getElementById("button-init").addEventListener("click", initialize);
+</script>
+</body>
+</html>
